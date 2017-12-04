@@ -4,5 +4,5 @@ import java.sql.Connection;;
 
 public class Output {
 	
-	private Connection connection;
+	private Connection connection; 
 }
