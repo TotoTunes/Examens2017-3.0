@@ -1,5 +1,8 @@
 package db;
 
-public class Output {
+import java.sql.Connection;;
 
+public class Output {
+	
+	private Connection connection;
 }
