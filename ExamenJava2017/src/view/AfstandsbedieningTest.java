@@ -17,6 +17,7 @@ public class AfstandsbedieningTest extends JComponent {
 
 
 	public static void main(String[] args) {
+	
 		int r = 1;
 		Random random = new Random();
 		do {
