@@ -21,7 +21,7 @@ public class Output {
 	String url = "jdbc:mysql://localhost:3306/afstandsbediening";
 	String user = "root@localhost";
 	String password = "Twdih300";
-	String Query = "Select * from bewoners";
+	String Query = "Select * from afstandsbediening.bewoners";
 	private Properties properties; 
 	
 
