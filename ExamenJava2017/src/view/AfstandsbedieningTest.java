@@ -1,10 +1,12 @@
 package view;
 
+import java.io.IOException;
 import java.util.Random;
 
 import javax.swing.JComponent;
 import javax.swing.JOptionPane;
 
+import db.Output;
 import model.IDModule;
 import model.User;
 import utilities.Generator;
@@ -16,14 +18,14 @@ public class AfstandsbedieningTest extends JComponent {
 	public static IDModule module = new IDModule();
 
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 	
 		int r = 1;
 		Random random = new Random();
 		do {
 
 			String a = JOptionPane.showInputDialog(
-					"Geef je keuze in: \n Willekeurige users maken = 1 \n user verwijderen = 2 \n Frequentie veranderen = 3\n");
+					"Geef je keuze in: \n Willekeurige users maken = 1 \n user verwijderen = 2 \n Frequentie veranderen = 3\n probeer connect to DB = 4 \n");
 			int b = Integer.parseInt(a);
 
 			switch (b) {
@@ -51,6 +53,11 @@ public class AfstandsbedieningTest extends JComponent {
 				}
 				System.out.println(all.toString());
 				break;
+			case 4:
+				Output output = new Output();
+				output.ConnectDb("DBproperties.properties");
+				break;
+				
 			default:
 				System.out.println("Fout");
 				break;

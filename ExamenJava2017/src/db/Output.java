@@ -30,8 +30,9 @@ public class Output {
 		try {
 			FileInputStream fileInputStream = new FileInputStream(filename);
 			properties.load(fileInputStream);
+			fileInputStream.close();
 		} catch (FileNotFoundException e1) {
-			// TODO Auto-generated catch block
+			JOptionPane.showMessageDialog(null, "verbinding niet gelukt");
 			e1.printStackTrace();
 		}
 
@@ -48,7 +49,7 @@ public class Output {
 				System.out.println();
 			}
 		} catch (SQLException e) {
-			JOptionPane.showMessageDialog(null, "Verbindingn niet gelukt");
+			JOptionPane.showMessageDialog(null, "Query niet gelukt");
 		}
 
 	}
