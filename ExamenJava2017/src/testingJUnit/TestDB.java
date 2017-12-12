@@ -1,11 +1,7 @@
 package testingJUnit;
 
-import static org.junit.Assert.*;
+import java.io.IOException;
 
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 import db.Output;
@@ -13,9 +9,9 @@ import db.Output;
 public class TestDB {
 
 	@Test
-	public void testConnectDb() {
+	public void testConnectDb() throws IOException {
 		Output db = new Output();
-		db.ConnectDb();
+		db.ConnectDb("DBproperties.properties");
 	}
 
 }
