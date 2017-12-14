@@ -18,14 +18,15 @@ public class Output {
 
 	// Connection connection =
 	// DriverManager.getConnection("jdbc:mysql://localhost:3306/afstandsbediening","root","Twdih300");
-	String url = "jdbc:mysql://localhost:3306/afstandsbediening";
-	String user = "root@localhost";
-	String password = "Twdih300";
-	String Query = "Select * from afstandsbediening.bewoners";
-	private Properties properties; 
-	
+		String url = "jdbc:mysql://localhost:3306/afstandsbediening";
+	// String user = "root@localhost";
+	// String password = "Twdih300";
+	// String Query = "Select * from afstandsbediening.bewoners";
 
-	public void ConnectDb(String filename) throws IOException {
+	private Properties properties;
+	private Connection connection;
+
+	private Properties GetDBproperties(String filename) throws IOException {
 		properties = new Properties();
 		try {
 			FileInputStream fileInputStream = new FileInputStream(filename);
@@ -36,22 +37,22 @@ public class Output {
 			e1.printStackTrace();
 		}
 
-		try (Connection conn = DriverManager.getConnection(properties.getProperty("url"), properties.getProperty("user"), properties.getProperty("password"));
-				Statement stmt = conn.createStatement();
-				ResultSet resultSet = stmt.executeQuery(Query);) {
-			ResultSetMetaData metaData = resultSet.getMetaData();
-			int numberofcollumns = metaData.getColumnCount();
+		return properties;
 
-			System.out.println("Waarden in bewoners : %n%n");
+	}
 
-			for (int i = 1; i <= numberofcollumns; i++) {
-				System.out.printf("%-8s\t", resultSet.getObject(i));
-				System.out.println();
+	public Connection ConnectToDB() throws IOException, SQLException {
+		GetDBproperties("DBproperties.properties");
+		if (connection == null) {
+			try {
+				Class.forName(properties.getProperty("driver"));
+			} catch (ClassNotFoundException e) {
+
+				e.printStackTrace();
 			}
-		} catch (SQLException e) {
-			JOptionPane.showMessageDialog(null, "Query niet gelukt");
+			connection = DriverManager.getConnection(url, properties);
 		}
-
+		return connection;
 	}
 
 }

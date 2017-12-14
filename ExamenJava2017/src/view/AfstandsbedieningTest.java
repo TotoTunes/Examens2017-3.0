@@ -1,6 +1,7 @@
 package view;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.Random;
 
 import javax.swing.JComponent;
@@ -18,7 +19,7 @@ public class AfstandsbedieningTest extends JComponent {
 	public static IDModule module = new IDModule();
 
 
-	public static void main(String[] args) throws IOException {
+	public static void main(String[] args) throws IOException, SQLException {
 	
 		int r = 1;
 		Random random = new Random();
@@ -55,7 +56,8 @@ public class AfstandsbedieningTest extends JComponent {
 				break;
 			case 4:
 				Output output = new Output();
-				output.ConnectDb("DBproperties.properties");
+				output.ConnectToDB();
+				
 				break;
 				
 			default:
