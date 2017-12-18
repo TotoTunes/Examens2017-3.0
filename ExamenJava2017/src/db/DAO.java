@@ -12,11 +12,6 @@ import javax.swing.JOptionPane;
 
 public class DAO {
 
-	// Connection connection =
-	// DriverManager.getConnection("jdbc:mysql://localhost:3306/afstandsbediening","root","Twdih300");
-	String url = "jdbc:mysql://localhost:3306/afstandsbediening";
-	// String user = "root@localhost";
-	// String password = "Twdih300";
 	// String Query = "Select * from afstandsbediening.bewoners";
 
 	private Properties properties;
@@ -38,7 +33,7 @@ public class DAO {
 
 	public void ConnectDB() throws IOException {
 		GetDBproperties("DBproperties.properties");
-		try (Connection connection = DriverManager.getConnection(url, properties.getProperty("user"), properties.getProperty("password"))) {
+		try (Connection connection = DriverManager.getConnection(properties.getProperty("url"), properties.getProperty("user"), properties.getProperty("password"))) {
 			System.out.println("Database connected!");
 		} catch (SQLException e) {
 			throw new IllegalStateException("Cannot connect the database!", e);

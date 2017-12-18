@@ -18,9 +18,8 @@ public class AfstandsbedieningTest extends JComponent {
 	// public static Logger logger = Logger.getLogger(AfstandsbedieningTest.class);
 	public static IDModule module = new IDModule();
 
-
 	public static void main(String[] args) throws IOException, SQLException {
-	
+
 		int r = 1;
 		Random random = new Random();
 		do {
@@ -57,14 +56,14 @@ public class AfstandsbedieningTest extends JComponent {
 			case 4:
 				DAO output = new DAO();
 				output.ConnectDB();
-				
+
 				break;
-				
+
 			default:
 				System.out.println("Fout");
 				break;
 			}
-			
+
 		} while (r < 2);
 
 		// JFrame frame = new JFrame("Test");
