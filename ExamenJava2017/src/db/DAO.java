@@ -14,7 +14,7 @@ import java.util.Properties;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
-public class Output {
+public class DAO {
 
 	// Connection connection =
 	// DriverManager.getConnection("jdbc:mysql://localhost:3306/afstandsbediening","root","Twdih300");

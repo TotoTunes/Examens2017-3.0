@@ -7,7 +7,7 @@ import java.util.Random;
 import javax.swing.JComponent;
 import javax.swing.JOptionPane;
 
-import db.Output;
+import db.DAO;
 import model.IDModule;
 import model.User;
 import utilities.Generator;
@@ -55,7 +55,7 @@ public class AfstandsbedieningTest extends JComponent {
 				System.out.println(all.toString());
 				break;
 			case 4:
-				Output output = new Output();
+				DAO output = new DAO();
 				output.ConnectToDB();
 				
 				break;
