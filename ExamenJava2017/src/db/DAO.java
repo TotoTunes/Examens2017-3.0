@@ -14,7 +14,7 @@ public class DAO {
 
 	// Connection connection =
 	// DriverManager.getConnection("jdbc:mysql://localhost:3306/afstandsbediening","root","Twdih300");
-	String url = "jdbc:mysql://localhost:3306/afstandsbediening";
+	String url = "jdbc:mysql://localhost:3306/afstandbediening";
 	// String user = "root@localhost";
 	// String password = "Twdih300";
 	// String Query = "Select * from afstandsbediening.bewoners";
