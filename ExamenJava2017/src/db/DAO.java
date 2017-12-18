@@ -10,12 +10,16 @@ import java.util.Properties;
 
 import javax.swing.JOptionPane;
 
+import org.junit.validator.PublicClassValidator;
+
+import com.mysql.jdbc.Statement;
+
 public class DAO {
 
 	// String Query = "Select * from afstandsbediening.bewoners";
 
 	private Properties properties;
-	private Connection connection; 
+
 	private Properties GetDBproperties(String filename) throws IOException {
 		properties = new Properties();
 		try {
