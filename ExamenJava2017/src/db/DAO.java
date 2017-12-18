@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Properties;
 
@@ -16,9 +17,24 @@ import com.mysql.jdbc.Statement;
 
 public class DAO {
 
-	// String Query = "Select * from afstandsbediening.bewoners";
+	 String Query = "Select * from afstandsbediening.bewoners";
 
 	private Properties properties;
+	private Connection conn;
+
+	/**
+	 * @return the conn
+	 */
+	public Connection getConn() {
+		return conn;
+	}
+
+	/**
+	 * @param conn the conn to set
+	 */
+	public void setConn(Connection conn) {
+		this.conn = conn;
+	}
 
 	private Properties GetDBproperties(String filename) throws IOException {
 		properties = new Properties();
@@ -35,13 +51,28 @@ public class DAO {
 
 	}
 
-	public void ConnectDB() throws IOException {
+	public Connection ConnectDB() throws IOException {
+		Connection connection;
 		GetDBproperties("DBproperties.properties");
-		try (Connection connection = DriverManager.getConnection(properties.getProperty("url"), properties.getProperty("user"), properties.getProperty("password"))) {
-			System.out.println("Database connected!");
+		try  {
+			connection = DriverManager.getConnection(properties.getProperty("url"), properties.getProperty("user"), properties.getProperty("password"));
+			System.out.println("Database connected!, Dit moet nog verwijderd worden");
 		} catch (SQLException e) {
 			throw new IllegalStateException("Cannot connect the database!", e);
 		}
+		return connection;
 	}
-
+	public void QueryDB() throws IOException, SQLException {
+		conn = ConnectDB();
+		Statement statement = (Statement) conn.createStatement();
+		ResultSet resultSet = statement.executeQuery(Query);
+		while(resultSet.next()) {
+			String voornaam = resultSet.getString("voornaam");
+			String achternaam = resultSet.getString("achternaam");
+			double frequency = resultSet.getDouble("frequency");
+			boolean acces = resultSet.getBoolean("acces");
+			
+			System.out.println(voornaam + " "+ achternaam+" "+ frequency+" "+acces);
+		}
+	}
 }

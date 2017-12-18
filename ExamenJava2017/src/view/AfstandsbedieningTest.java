@@ -21,11 +21,12 @@ public class AfstandsbedieningTest extends JComponent {
 	public static void main(String[] args) throws IOException, SQLException {
 
 		int r = 1;
+		DAO output = new DAO();
 		Random random = new Random();
 		do {
 
 			String a = JOptionPane.showInputDialog(
-					"Geef je keuze in: \n Willekeurige users maken = 1 \n user verwijderen = 2 \n Frequentie veranderen = 3\n probeer connect to DB = 4 \n");
+					"Geef je keuze in: \n Willekeurige users maken = 1 \n user verwijderen = 2 \n Frequentie veranderen = 3\n probeer connect to DB = 4 \n Query uitvoeren = 5");
 			int b = Integer.parseInt(a);
 
 			switch (b) {
@@ -54,9 +55,10 @@ public class AfstandsbedieningTest extends JComponent {
 				System.out.println(all.toString());
 				break;
 			case 4:
-				DAO output = new DAO();
-				output.ConnectDB();
 
+				output.ConnectDB();
+			case 5:
+				output.QueryDB();
 				break;
 
 			default:
