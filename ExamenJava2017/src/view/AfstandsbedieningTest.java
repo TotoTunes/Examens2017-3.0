@@ -56,7 +56,7 @@ public class AfstandsbedieningTest extends JComponent {
 				break;
 			case 4:
 				DAO output = new DAO();
-				output.ConnectToDB();
+				output.ConnectDB();
 				
 				break;
 				
