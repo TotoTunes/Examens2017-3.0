@@ -11,8 +11,6 @@ import java.util.Properties;
 
 import javax.swing.JOptionPane;
 
-import org.junit.validator.PublicClassValidator;
-
 import com.mysql.jdbc.Statement;
 
 import utilities.Generator;
