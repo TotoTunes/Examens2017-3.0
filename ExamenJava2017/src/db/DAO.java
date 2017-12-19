@@ -15,9 +15,11 @@ import org.junit.validator.PublicClassValidator;
 
 import com.mysql.jdbc.Statement;
 
+import utilities.Generator;
+
 public class DAO {
 
-	 String Query = "Select * from afstandsbediening.bewoners";
+	String Query = "Select * from afstandsbediening.bewoners";
 
 	private Properties properties;
 	private Connection conn;
@@ -30,7 +32,8 @@ public class DAO {
 	}
 
 	/**
-	 * @param conn the conn to set
+	 * @param conn
+	 *            the conn to set
 	 */
 	public void setConn(Connection conn) {
 		this.conn = conn;
@@ -54,25 +57,38 @@ public class DAO {
 	public Connection ConnectDB() throws IOException {
 		Connection connection;
 		GetDBproperties("DBproperties.properties");
-		try  {
-			connection = DriverManager.getConnection(properties.getProperty("url"), properties.getProperty("user"), properties.getProperty("password"));
+		try {
+			connection = DriverManager.getConnection(properties.getProperty("url"), properties.getProperty("user"),
+					properties.getProperty("password"));
 			System.out.println("Database connected!, Dit moet nog verwijderd worden");
 		} catch (SQLException e) {
 			throw new IllegalStateException("Cannot connect the database!", e);
 		}
 		return connection;
 	}
+
 	public void QueryDB() throws IOException, SQLException {
 		conn = ConnectDB();
 		Statement statement = (Statement) conn.createStatement();
 		ResultSet resultSet = statement.executeQuery(Query);
-		while(resultSet.next()) {
+		while (resultSet.next()) {
 			String voornaam = resultSet.getString("voornaam");
 			String achternaam = resultSet.getString("achternaam");
 			double frequency = resultSet.getDouble("frequency");
 			boolean acces = resultSet.getBoolean("acces");
-			
-			System.out.println(voornaam + " "+ achternaam+" "+ frequency+" "+acces);
+
+			System.out.println(voornaam + " " + achternaam + " " + frequency + " " + acces);
 		}
+		statement.close();
+		resultSet.close();
+	}
+
+	public void updateDB() throws IOException, SQLException {
+		conn = ConnectDB();
+		Statement statement = (Statement) conn.createStatement();
+		
+		String insert = "insert into bewoners(voornaam, achternaam, frequency, acces)  values ('"+ Generator.GenerateVoornaam()+"','"+Generator.GenerateAchternaam()+"', "+1+", TRUE)";
+		statement.execute(insert);
+		statement.close();
 	}
 }

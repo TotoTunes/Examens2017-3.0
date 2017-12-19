@@ -10,14 +10,14 @@ public class Generator {
 	private static Random rand = new Random();
 	private static ArrayList<Double> FrequencyList = new ArrayList<Double>();
 
-	private static String GenerateVoornaam() {
+	public static String GenerateVoornaam() {
 
 		VoornaamEnum voornaam = VoornaamEnum.values()[rand.nextInt(VoornaamEnum.values().length)];
 		String result = voornaam.toString();
 		return result;
 	}
 
-	private static String GenerateAchternaam() {
+	public static String GenerateAchternaam() {
 		AchternaamEnum achternaam = AchternaamEnum.values()[rand.nextInt(AchternaamEnum.values().length)];
 		String result = achternaam.toString();
 		return result;

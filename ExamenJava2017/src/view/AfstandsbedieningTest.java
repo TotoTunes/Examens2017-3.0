@@ -26,7 +26,7 @@ public class AfstandsbedieningTest extends JComponent {
 		do {
 
 			String a = JOptionPane.showInputDialog(
-					"Geef je keuze in: \n Willekeurige users maken = 1 \n user verwijderen = 2 \n Frequentie veranderen = 3\n probeer connect to DB = 4 \n Query uitvoeren = 5");
+					"Geef je keuze in: \n Willekeurige users maken = 1 \n user verwijderen = 2 \n Frequentie veranderen = 3\n probeer connect to DB = 4 \n Query uitvoeren = 5 \n Update DB = 6");
 			int b = Integer.parseInt(a);
 
 			switch (b) {
@@ -60,7 +60,9 @@ public class AfstandsbedieningTest extends JComponent {
 			case 5:
 				output.QueryDB();
 				break;
-
+			case 6:
+				output.updateDB();
+				break;
 			default:
 				System.out.println("Fout");
 				break;
