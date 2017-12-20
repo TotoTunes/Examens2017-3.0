@@ -2,22 +2,39 @@ package model;
 
 public class User implements IObserver {
 
-	private String name;
+
 	private boolean acces;
 	private double frequency;
+	private String lastName;
+	private String firstName;
+	/**
+	 * @return the firstName
+	 */
+	public String getFirstName() {
+		return firstName;
+	}
+	/**
+	 * @param firstName the firstName to set
+	 */
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+	/**
+	 * @return the lastName
+	 */
+	public String getLastName() {
+		return lastName;
+	}
+	/**
+	 * @param lastName the lastName to set
+	 */
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
 	/**
 	 * @return the name
 	 */
-	
-	public String getName() {
-		return name;
-	}
-	/**
-	 * @param name the name to set
-	 */
-	public void setName(String name) {
-		this.name = name;
-	}
+
 	/**
 	 * @return the acces
 	 */
@@ -47,14 +64,22 @@ public class User implements IObserver {
 		setFrequency(frequency);
 		
 	}
-	public User(String name, boolean acces, double frequency) {
+
+	/**
+	 * @param acces
+	 * @param frequency
+	 * @param lastName
+	 * @param firstName
+	 */
+	public User(boolean acces, double frequency, String lastName, String firstName) {
 		super();
-		this.name = name;
 		this.acces = acces;
 		this.frequency = frequency;
+		this.lastName = lastName;
+		this.firstName = firstName;
 	}
 	public String toString() {
-		String beschrijving = name+" "+frequency+"\n";
+		String beschrijving = firstName+" "+frequency+"\n";
 		return beschrijving;
 	}
 

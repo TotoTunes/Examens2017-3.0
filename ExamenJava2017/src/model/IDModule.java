@@ -77,7 +77,7 @@ public class IDModule implements ISubject {
 	public User GetSpecificUser(String achternaam) {
 		User hUser = null;
 		for (User user : UserList) {
-			if (user.getName().contains(achternaam.toUpperCase())==true) {
+			if (user.getLastName().contains(achternaam.toUpperCase())==true) {
 				hUser = user;
 				;
 				break;

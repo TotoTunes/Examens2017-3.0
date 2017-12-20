@@ -23,10 +23,6 @@ public class Generator {
 		return result;
 	}
 
-	public static String GenerateNaam() {
-		String naam = GenerateVoornaam() + " " + GenerateAchternaam();
-		return naam;
-	}
 
 	public static double Randomfrequency() {
 		int a = rand.nextInt(900);
@@ -48,7 +44,7 @@ public class Generator {
 		FrequencyList.clear();
 	}
 	public static User GenerateUsers(double frequency){
-		User aUser = new User(GenerateNaam(), true, frequency);
+		User aUser = new User(true, frequency, GenerateAchternaam(), GenerateVoornaam());
 		return aUser;
 	}
 }
