@@ -16,6 +16,15 @@ import utilities.Generator;
 @SuppressWarnings("serial")
 public class AfstandsbedieningTest extends JComponent {
 
+	/* TO DO 
+	 * 
+	 * Inladen van gebruikers die al in de database zitten bij opstarten programma
+	 * user verwijderen en zoeken op naam -> meerdere resultaten mogelijk dus allemaal tonen
+	 * Poort openen (signaal van user naar module) Functie al geschreven in IDmodule -> ok? 
+	 * individuele gebruiker toevoegen
+	 * frequentie manueel veranderen? -> om te testen? 
+	 * 
+	 */
 	// public static Logger logger = Logger.getLogger(AfstandsbedieningTest.class);
 	public static IDModule module = new IDModule();
 
