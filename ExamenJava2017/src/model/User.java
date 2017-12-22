@@ -81,7 +81,7 @@ public class User implements IObserver {
 		this.firstName = firstName;
 	}
 	public String toString() {
-		String beschrijving = firstName+" "+frequency+"\n";
+		String beschrijving = firstName+" "+lastName+" "+frequency+"\n";
 		return beschrijving;
 	}
 }

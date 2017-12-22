@@ -6,6 +6,7 @@ import java.util.Random;
 
 import javax.swing.JComponent;
 import javax.swing.JOptionPane;
+import javax.swing.text.AbstractDocument.BranchElement;
 
 import db.DAO;
 import model.IDModule;
@@ -62,6 +63,12 @@ public class AfstandsbedieningTest extends JComponent {
 				break;
 			case 6:
 				output.updateDB();
+				break;
+			case 7:
+				for (User user : module.getUserList()) {
+					module.openGate(user);
+				}
+				
 				break;
 			default:
 				System.out.println("Fout");

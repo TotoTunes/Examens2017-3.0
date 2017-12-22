@@ -74,10 +74,10 @@ public class IDModule implements ISubject {
 		User user = UserList.get(index);
 		return user;
 	}
-	public User GetSpecificUser(String achternaam) {
+	public User GetSpecificUser(String naam) {
 		User hUser = null;
 		for (User user : UserList) {
-			if (user.getLastName().contains(achternaam.toUpperCase())==true) {
+			if (user.getLastName().contains(naam.toUpperCase())==true || user.getFirstName().contains(naam.toUpperCase())== true) {
 				hUser = user;
 				;
 				break;
