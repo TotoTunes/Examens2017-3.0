@@ -7,5 +7,5 @@ public interface ISubject {
 	void addObserver(User user);
 	void updateObserver(double frequency, User user);
 	void notifyAll(ArrayList<User> arrayList);
-	void openGate(double frequency);
+	void openGate(User user);
 }

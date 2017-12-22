@@ -1,5 +1,7 @@
 package model;
 
+import javax.security.auth.Subject;
+
 public class User implements IObserver {
 
 
@@ -82,10 +84,5 @@ public class User implements IObserver {
 		String beschrijving = firstName+" "+frequency+"\n";
 		return beschrijving;
 	}
-	@Override
-	public void demandOpenGate(double frequency) {
-		// TODO Auto-generated method stub
-		
-	}
-
 }
+

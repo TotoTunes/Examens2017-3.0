@@ -88,9 +88,17 @@ public class IDModule implements ISubject {
 	}
 
 	@Override
-	public void openGate(double frequency) {
-		// TODO Auto-generated method stub
-		
+	public void openGate(User user) {
+		if (user.getFrequency() == permittedFrequency && user.isAcces() == true) {
+			System.out.println("Poort Open");
+		}
+		else if (user.getFrequency() != permittedFrequency && user.isAcces() == true) {
+			updateObserver(permittedFrequency, user);
+			System.out.println("Poort Open en frequency updated");
+		}
+		else if (user.getFrequency() != permittedFrequency && user.isAcces() == false) {
+			System.out.println("Acces denied, user removed");
+		}
 	}
 
 }
