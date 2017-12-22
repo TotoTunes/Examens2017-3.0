@@ -39,25 +39,25 @@ public class IDModule implements ISubject {
 	}
 
 	@Override
-	public void RemoveObserver(User user) {
+	public void removeObserver(User user) {
 		UserList.remove(user);
 	}
 
 	@Override
-	public void AddObserver(User user) {
+	public void addObserver(User user) {
 		UserList.add(user);
 	}
 
 	@Override
-	public void UpdateObserver(double frequency, User user) {
+	public void updateObserver(double frequency, User user) {
 		user.setFrequency(frequency);
 	}
 
 	@Override
-	public void NotifyAll(ArrayList<User> arrayList) {
+	public void notifyAll(ArrayList<User> arrayList) {
 		System.out.print("Udate Frequentie");
 		for (User user : arrayList) {
-			UpdateObserver(Generator.Randomfrequency(), user);
+			updateObserver(Generator.Randomfrequency(), user);
 		}
 
 	}
@@ -85,6 +85,12 @@ public class IDModule implements ISubject {
 			}
 		}
 		return hUser;
+	}
+
+	@Override
+	public void openGate(double frequency) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

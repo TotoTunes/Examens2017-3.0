@@ -2,5 +2,6 @@ package model;
 
 public interface IObserver {
 
-	void HandleNotification(double frequency);
+	void handleNotification(double frequency);
+	void demandOpenGate(double frequency);
 }

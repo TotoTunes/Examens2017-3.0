@@ -35,7 +35,7 @@ public class AfstandsbedieningTest extends JComponent {
 				StringBuffer alles = new StringBuffer();
 				for (int i = 0; i < 50; ++i) {
 					User aUser = Generator.GenerateUsers(module.getPermittedFrequency());
-					module.AddObserver(aUser);
+					module.addObserver(aUser);
 					alles.append(aUser.toString());
 				}
 				System.out.println(alles);
@@ -49,7 +49,7 @@ public class AfstandsbedieningTest extends JComponent {
 				module.setPermittedFrequency(Generator.Randomfrequency());
 				StringBuffer all = new StringBuffer();
 				for (User bUser : module.getUserList()) {
-					module.UpdateObserver(module.getPermittedFrequency(), bUser);
+					module.updateObserver(module.getPermittedFrequency(), bUser);
 					all.append(bUser.toString());
 				}
 				System.out.println(all.toString());

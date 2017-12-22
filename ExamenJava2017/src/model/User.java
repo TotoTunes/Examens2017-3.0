@@ -60,7 +60,7 @@ public class User implements IObserver {
 		this.frequency = frequency;
 	}
 	@Override
-	public void HandleNotification(double frequency) {
+	public void handleNotification(double frequency) {
 		setFrequency(frequency);
 		
 	}
@@ -81,6 +81,11 @@ public class User implements IObserver {
 	public String toString() {
 		String beschrijving = firstName+" "+frequency+"\n";
 		return beschrijving;
+	}
+	@Override
+	public void demandOpenGate(double frequency) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
