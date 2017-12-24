@@ -1,7 +1,5 @@
 package model;
 
-import javax.security.auth.Subject;
-
 public class User implements IObserver {
 
 

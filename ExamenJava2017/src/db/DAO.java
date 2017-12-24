@@ -7,12 +7,14 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Properties;
 
 import javax.swing.JOptionPane;
 
 import com.mysql.jdbc.Statement;
 
+import model.User;
 import utilities.Generator;
 
 public class DAO {
@@ -58,27 +60,30 @@ public class DAO {
 		try {
 			connection = DriverManager.getConnection(properties.getProperty("url"), properties.getProperty("user"),
 					properties.getProperty("password"));
-			System.out.println("Database connected!, Dit moet nog verwijderd worden");
+//			System.out.println("Database connected!, Dit moet nog verwijderd worden");
 		} catch (SQLException e) {
 			throw new IllegalStateException("Cannot connect the database!", e);
 		}
 		return connection;
 	}
 
-	public void QueryDB() throws IOException, SQLException {
+	public ArrayList<User> loadUserFromDB() throws IOException, SQLException {
 		conn = ConnectDB();
 		Statement statement = (Statement) conn.createStatement();
 		ResultSet resultSet = statement.executeQuery(Query);
+		User user = null;
+		ArrayList<User> personen = new ArrayList<User>();
 		while (resultSet.next()) {
 			String voornaam = resultSet.getString("voornaam");
 			String achternaam = resultSet.getString("achternaam");
 			double frequency = resultSet.getDouble("frequency");
 			boolean acces = resultSet.getBoolean("acces");
-
-			System.out.println(voornaam + " " + achternaam + " " + frequency + " " + acces);
+			user = new User(acces, frequency, achternaam, voornaam);
+			personen.add(user);
 		}
 		statement.close();
 		resultSet.close();
+		return personen;
 	}
 
 	public void updateDB() throws IOException, SQLException {

@@ -6,7 +6,6 @@ import java.util.Random;
 
 import javax.swing.JComponent;
 import javax.swing.JOptionPane;
-import javax.swing.text.AbstractDocument.BranchElement;
 
 import db.DAO;
 import model.IDModule;
@@ -18,7 +17,7 @@ public class AfstandsbedieningTest extends JComponent {
 
 	/* TO DO 
 	 * 
-	 * Inladen van gebruikers die al in de database zitten bij opstarten programma
+	 * Inladen van gebruikers die al in de database zitten bij opstarten programma -> CHECK
 	 * user verwijderen en zoeken op naam -> meerdere resultaten mogelijk dus allemaal tonen
 	 * Poort openen (signaal van user naar module) Functie al geschreven in IDmodule -> ok? 
 	 * individuele gebruiker toevoegen
@@ -26,20 +25,21 @@ public class AfstandsbedieningTest extends JComponent {
 	 * 
 	 */
 	// public static Logger logger = Logger.getLogger(AfstandsbedieningTest.class);
-	public static IDModule module = new IDModule();
+	
 
 	public static void main(String[] args) throws IOException, SQLException {
 
 		int r = 1;
 		DAO output = new DAO();
+		IDModule module = new IDModule(output.loadUserFromDB());
 		Random random = new Random();
 		do {
 
 			String a = JOptionPane.showInputDialog(
 					"Geef je keuze in: \n Willekeurige users maken = 1 \n user verwijderen = 2 \n Frequentie veranderen = 3\n probeer connect to DB = 4 \n Query uitvoeren = 5 \n Update DB = 6");
-			int b = Integer.parseInt(a);
+			int keuze = Integer.parseInt(a);
 
-			switch (b) {
+			switch (keuze) {
 
 			case 1:
 				StringBuffer alles = new StringBuffer();
@@ -68,7 +68,7 @@ public class AfstandsbedieningTest extends JComponent {
 
 				output.ConnectDB();
 			case 5:
-				output.QueryDB();
+				output.loadUserFromDB();
 				break;
 			case 6:
 				output.updateDB();

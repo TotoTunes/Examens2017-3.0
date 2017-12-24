@@ -17,7 +17,8 @@ public class IDModule implements ISubject {
 	}
 
 	/**
-	 * @param permittedFrequency the permittedFrequency to set
+	 * @param permittedFrequency
+	 *            the permittedFrequency to set
 	 */
 	public void setPermittedFrequency(double permittedFrequency) {
 		this.permittedFrequency = permittedFrequency;
@@ -65,23 +66,27 @@ public class IDModule implements ISubject {
 	/**
 	 * @param userList
 	 */
-	public IDModule() {
+	public IDModule(ArrayList<User> personen) {
 		super();
-		UserList = new ArrayList<User>();
+		UserList = personen;
+
 		setPermittedFrequency(Generator.Randomfrequency());
 	}
+
 	public User GetSpecificUser(int index) {
 		User user = UserList.get(index);
 		return user;
 	}
+
 	public User GetSpecificUser(String naam) {
 		User hUser = null;
 		for (User user : UserList) {
-			if (user.getLastName().contains(naam.toUpperCase())==true || user.getFirstName().contains(naam.toUpperCase())== true) {
+			if (user.getLastName().contains(naam.toUpperCase()) == true
+					|| user.getFirstName().contains(naam.toUpperCase()) == true) {
 				hUser = user;
 				;
 				break;
-				
+
 			}
 		}
 		return hUser;
@@ -91,14 +96,25 @@ public class IDModule implements ISubject {
 	public void openGate(User user) {
 		if (user.getFrequency() == permittedFrequency && user.isAcces() == true) {
 			System.out.println("Poort Open");
-		}
-		else if (user.getFrequency() != permittedFrequency && user.isAcces() == true) {
+		} else if (user.getFrequency() != permittedFrequency && user.isAcces() == true) {
 			updateObserver(permittedFrequency, user);
 			System.out.println("Poort Open en frequency updated");
-		}
-		else if (user.getFrequency() != permittedFrequency && user.isAcces() == false) {
+		} else if (user.getFrequency() != permittedFrequency && user.isAcces() == false) {
 			System.out.println("Acces denied, user removed");
 		}
+	}
+
+	public String toString(User user) {
+		String beschrijving = "Ik ben " + user.getFirstName() + " " + user.getLastName() + " ( Frequency "
+				+ user.getFrequency() + ", Toegang " + user.isAcces() + " )";
+		return beschrijving;
+	}
+	public StringBuffer allToString() {
+		StringBuffer buffer = new StringBuffer();
+		for (User user : UserList) {
+			buffer.append(toString(user));
+		}
+		return buffer;
 	}
 
 }
