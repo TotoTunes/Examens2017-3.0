@@ -75,8 +75,8 @@ public class User implements IObserver {
 		super();
 		this.acces = acces;
 		this.frequency = frequency;
-		this.lastName = lastName;
-		this.firstName = firstName;
+		this.lastName = lastName.toUpperCase();
+		this.firstName = firstName.toUpperCase();
 	}
 	public String toString() {
 		String beschrijving = firstName+" "+lastName+" "+frequency+"\n";

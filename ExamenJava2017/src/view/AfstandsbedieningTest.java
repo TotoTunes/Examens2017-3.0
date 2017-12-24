@@ -7,7 +7,6 @@ import java.util.Random;
 import javax.swing.JComponent;
 import javax.swing.JOptionPane;
 
-import db.DAO;
 import model.IDModule;
 import model.User;
 import utilities.Generator;
@@ -15,28 +14,29 @@ import utilities.Generator;
 @SuppressWarnings("serial")
 public class AfstandsbedieningTest extends JComponent {
 
-	/* TO DO 
+	/*
+	 * TO DO
 	 * 
-	 * Inladen van gebruikers die al in de database zitten bij opstarten programma -> CHECK
-	 * user verwijderen en zoeken op naam -> meerdere resultaten mogelijk dus allemaal tonen
-	 * Poort openen (signaal van user naar module) Functie al geschreven in IDmodule -> ok? 
-	 * individuele gebruiker toevoegen
-	 * frequentie manueel veranderen? -> om te testen? 
+	 * Inladen van gebruikers die al in de database zitten bij opstarten programma
+	 * -> altijd gaan zoeken naar user in DB
+	 * 
+	 * user verwijderen en zoeken op naam -> meerdere resultaten mogelijk dus
+	 * allemaal tonen Poort openen (signaal van user naar module) Functie al
+	 * geschreven in IDmodule -> ok? individuele gebruiker toevoegen frequentie
+	 * manueel veranderen? -> om te testen?
 	 * 
 	 */
 	// public static Logger logger = Logger.getLogger(AfstandsbedieningTest.class);
-	
 
 	public static void main(String[] args) throws IOException, SQLException {
 
 		int r = 1;
-		DAO output = new DAO();
-		IDModule module = new IDModule(output.loadUserFromDB());
+		IDModule module = new IDModule();
 		Random random = new Random();
 		do {
 
 			String a = JOptionPane.showInputDialog(
-					"Geef je keuze in: \n Willekeurige users maken = 1 \n user verwijderen = 2 \n Frequentie veranderen = 3\n probeer connect to DB = 4 \n Query uitvoeren = 5 \n Update DB = 6");
+					"Geef je keuze in: \n Willekeurige users maken = 1 \n user verwijderen = 2 \n Frequentie veranderen = 3\n Nieuwe User invoeren = 4 \n Poort openen = 5");
 			int keuze = Integer.parseInt(a);
 
 			switch (keuze) {
@@ -65,19 +65,16 @@ public class AfstandsbedieningTest extends JComponent {
 				System.out.println(all.toString());
 				break;
 			case 4:
+				String lastname = JOptionPane.showInputDialog("Geef de achternaam in");
+				String firstname = JOptionPane.showInputDialog("Geef de voornaam in");
+				module.addObserver(new User(true, module.getPermittedFrequency(), lastname, firstname));
+				break;
 
-				output.ConnectDB();
 			case 5:
-				output.loadUserFromDB();
-				break;
-			case 6:
-				output.updateDB();
-				break;
-			case 7:
 				for (User user : module.getUserList()) {
 					module.openGate(user);
 				}
-				
+
 				break;
 			default:
 				System.out.println("Fout");

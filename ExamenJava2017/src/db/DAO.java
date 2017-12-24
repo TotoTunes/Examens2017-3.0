@@ -15,7 +15,6 @@ import javax.swing.JOptionPane;
 import com.mysql.jdbc.Statement;
 
 import model.User;
-import utilities.Generator;
 
 public class DAO {
 
@@ -86,11 +85,11 @@ public class DAO {
 		return personen;
 	}
 
-	public void updateDB() throws IOException, SQLException {
+	public void updateDB(User user) throws IOException, SQLException {
 		conn = ConnectDB();
 		Statement statement = (Statement) conn.createStatement();
 		
-		String insert = "insert into bewoners(voornaam, achternaam, frequency, acces)  values ('"+ Generator.GenerateVoornaam()+"','"+Generator.GenerateAchternaam()+"', "+1+", TRUE)";
+		String insert = "insert into bewoners(voornaam, achternaam, frequency, acces)  values ('"+ user.getFirstName()+"','"+user.getLastName()+"', "+user.getFrequency()+", "+user.isAcces()+")";
 		statement.execute(insert);
 		statement.close();
 	}

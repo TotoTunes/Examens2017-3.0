@@ -1,13 +1,18 @@
 package model;
 
+import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
+import db.DAO;
 import utilities.Generator;
 
 public class IDModule implements ISubject {
 
 	private ArrayList<User> UserList;
 	private double permittedFrequency;
+	// Db object in deze klasse omdat men dan niet via de view aan de DB functionaliteit kan. enkel de IDmodule moet dat kunnen
+	private DAO db;
 
 	/**
 	 * @return the permittedFrequency
@@ -45,8 +50,9 @@ public class IDModule implements ISubject {
 	}
 
 	@Override
-	public void addObserver(User user) {
+	public void addObserver(User user) throws IOException, SQLException {
 		UserList.add(user);
+		db.updateDB(user);
 	}
 
 	@Override
@@ -65,10 +71,13 @@ public class IDModule implements ISubject {
 
 	/**
 	 * @param userList
+	 * @throws SQLException
+	 * @throws IOException
 	 */
-	public IDModule(ArrayList<User> personen) {
+	public IDModule() throws IOException, SQLException {
 		super();
-		UserList = personen;
+		setDb(new DAO());
+		UserList = db.loadUserFromDB();
 
 		setPermittedFrequency(Generator.Randomfrequency());
 	}
@@ -109,12 +118,21 @@ public class IDModule implements ISubject {
 				+ user.getFrequency() + ", Toegang " + user.isAcces() + " )";
 		return beschrijving;
 	}
+
 	public StringBuffer allToString() {
 		StringBuffer buffer = new StringBuffer();
 		for (User user : UserList) {
 			buffer.append(toString(user));
 		}
 		return buffer;
+	}
+
+	public DAO getDb() {
+		return db;
+	}
+
+	public void setDb(DAO db) {
+		this.db = db;
 	}
 
 }
