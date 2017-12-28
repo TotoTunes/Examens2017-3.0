@@ -3,10 +3,8 @@ package view;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Random;
-
 import javax.swing.JComponent;
 import javax.swing.JOptionPane;
-
 import model.IDModule;
 import model.User;
 import utilities.Generator;
@@ -26,7 +24,6 @@ public class AfstandsbedieningTest extends JComponent {
 	 * manueel veranderen? -> om te testen?
 	 * 
 	 */
-	// public static Logger logger = Logger.getLogger(AfstandsbedieningTest.class);
 
 	public static void main(String[] args) throws IOException, SQLException {
 
