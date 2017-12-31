@@ -10,7 +10,23 @@ import utilities.Generator;
 public class IDModule implements ISubject {
 
 	private ArrayList<User> UserList;
+	ArrayList<User> Search;
 	private double permittedFrequency;
+	/**
+	 * @return the search
+	 */
+	public ArrayList<User> getSearch() {
+		return Search;
+	}
+
+	/**
+	 * @param search the search to set
+	 */
+	public void setSearch(ArrayList<User> search) {
+		Search = search;
+	}
+
+
 	// Db object in deze klasse omdat men dan niet via de view aan de DB
 	// functionaliteit kan. enkel de IDmodule moet dat kunnen
 	private DAO db;
@@ -83,23 +99,26 @@ public class IDModule implements ISubject {
 		setPermittedFrequency(Generator.Randomfrequency());
 	}
 
-	public User GetSpecificUser(int index) {
-		User user = UserList.get(index);
+	public User GetSpecificUser(int index, ArrayList<User> list) {
+		User user = list.get(index);
 		return user;
 	}
 
 	@SuppressWarnings("unused")
-	public ArrayList<User> GetSpecificUser(String naam) {
+	public String GetSpecificUser(String naam) {
 		User hUser = null;
-		ArrayList<User> Search = new ArrayList<>();
+		Search = new ArrayList<>();
+		StringBuffer buffer = new StringBuffer();
+		int i = 0;
 		for (User user : UserList) {
 			if (user.getLastName().contains(naam.toUpperCase()) == true
 					|| user.getFirstName().contains(naam.toUpperCase()) == true) {
 				hUser = user;
+				buffer.append(++i +" " + hUser.toString());
 				Search.add(user);
 			}
 		}
-		return Search;
+		return buffer.toString();
 	}
 
 	@Override

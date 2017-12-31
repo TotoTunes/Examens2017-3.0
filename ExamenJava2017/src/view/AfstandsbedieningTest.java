@@ -45,12 +45,13 @@ public class AfstandsbedieningTest extends JComponent {
 					module.addObserver(aUser);
 					alles.append(aUser.toString());	
 				}
-				int g = Integer.parseInt(JOptionPane.showInputDialog(alles));
+				JOptionPane.showMessageDialog(null, alles);
 				// logger.info(alles.toString());
 				break;
 			case 2:
 				String achternaam = JOptionPane.showInputDialog("Geef een naam in: ");
-				JOptionPane.showMessageDialog(null, module.GetSpecificUser(achternaam));
+				int g = Integer.parseInt(JOptionPane.showInputDialog( module.GetSpecificUser(achternaam)));
+				module.removeObserver(module.GetSpecificUser(g-1, module.getSearch()));
 				break;
 			case 3:
 				module.setPermittedFrequency(Generator.Randomfrequency());
