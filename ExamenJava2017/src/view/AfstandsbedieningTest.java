@@ -43,14 +43,14 @@ public class AfstandsbedieningTest extends JComponent {
 				for (int i = 0; i < 50; ++i) {
 					User aUser = Generator.GenerateUsers(module.getPermittedFrequency());
 					module.addObserver(aUser);
-					alles.append(aUser.toString());
+					alles.append(aUser.toString());	
 				}
-				System.out.println(alles);
+				int g = Integer.parseInt(JOptionPane.showInputDialog(alles));
 				// logger.info(alles.toString());
 				break;
 			case 2:
 				String achternaam = JOptionPane.showInputDialog("Geef een naam in: ");
-				System.out.println(module.GetSpecificUser(achternaam));
+				JOptionPane.showMessageDialog(null, module.GetSpecificUser(achternaam));
 				break;
 			case 3:
 				module.setPermittedFrequency(Generator.Randomfrequency());
@@ -59,7 +59,7 @@ public class AfstandsbedieningTest extends JComponent {
 					module.updateObserver(module.getPermittedFrequency(), bUser);
 					all.append(bUser.toString());
 				}
-				System.out.println(all.toString());
+				JOptionPane.showMessageDialog(null, all.toString());
 				break;
 			case 4:
 				String lastname = JOptionPane.showInputDialog("Geef de achternaam in");

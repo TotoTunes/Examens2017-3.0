@@ -11,7 +11,8 @@ public class IDModule implements ISubject {
 
 	private ArrayList<User> UserList;
 	private double permittedFrequency;
-	// Db object in deze klasse omdat men dan niet via de view aan de DB functionaliteit kan. enkel de IDmodule moet dat kunnen
+	// Db object in deze klasse omdat men dan niet via de view aan de DB
+	// functionaliteit kan. enkel de IDmodule moet dat kunnen
 	private DAO db;
 
 	/**
@@ -87,18 +88,18 @@ public class IDModule implements ISubject {
 		return user;
 	}
 
-	public User GetSpecificUser(String naam) {
+	@SuppressWarnings("unused")
+	public ArrayList<User> GetSpecificUser(String naam) {
 		User hUser = null;
+		ArrayList<User> Search = new ArrayList<>();
 		for (User user : UserList) {
 			if (user.getLastName().contains(naam.toUpperCase()) == true
 					|| user.getFirstName().contains(naam.toUpperCase()) == true) {
 				hUser = user;
-				;
-				break;
-
+				Search.add(user);
 			}
 		}
-		return hUser;
+		return Search;
 	}
 
 	@Override
