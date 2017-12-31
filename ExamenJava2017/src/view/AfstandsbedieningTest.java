@@ -50,7 +50,7 @@ public class AfstandsbedieningTest extends JComponent {
 				break;
 			case 2:
 				String achternaam = JOptionPane.showInputDialog("Geef een naam in: ");
-				int g = Integer.parseInt(JOptionPane.showInputDialog( module.GetSpecificUser(achternaam)));
+				int g = Integer.parseInt(JOptionPane.showInputDialog( module.GetSpecificUser(achternaam) + "\n Geef het nummer in van de persoon die je wilt verwijderen"));
 				module.removeObserver(module.GetSpecificUser(g-1, module.getSearch()));
 				break;
 			case 3:

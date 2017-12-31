@@ -59,7 +59,7 @@ public class DAO {
 		try {
 			connection = DriverManager.getConnection(properties.getProperty("url"), properties.getProperty("user"),
 					properties.getProperty("password"));
-//			System.out.println("Database connected!, Dit moet nog verwijderd worden");
+			// System.out.println("Database connected!, Dit moet nog verwijderd worden");
 		} catch (SQLException e) {
 			throw new IllegalStateException("Cannot connect the database!", e);
 		}
@@ -88,9 +88,20 @@ public class DAO {
 	public void updateDB(User user) throws IOException, SQLException {
 		conn = ConnectDB();
 		Statement statement = (Statement) conn.createStatement();
-		
-		String insert = "insert into bewoners(voornaam, achternaam, frequency, acces)  values ('"+ user.getFirstName()+"','"+user.getLastName()+"', "+user.getFrequency()+", "+user.isAcces()+")";
+
+		String insert = "insert into bewoners(voornaam, achternaam, frequency, acces)  values ('" + user.getFirstName()
+				+ "','" + user.getLastName() + "', " + user.getFrequency() + ", " + user.isAcces() + ")";
 		statement.execute(insert);
+		statement.close();
+	}
+
+	public void deleteDB(User user) throws IOException, SQLException {
+		conn = ConnectDB();
+		Statement statement = (Statement) conn.createStatement();
+
+		String delete = "DELETE FROM bewoners where voornaam = '" + user.getFirstName() + "' AND achternaam = '"
+				+ user.getLastName() + "'";
+		statement.execute(delete);
 		statement.close();
 	}
 }

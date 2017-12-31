@@ -12,6 +12,10 @@ public class IDModule implements ISubject {
 	private ArrayList<User> UserList;
 	ArrayList<User> Search;
 	private double permittedFrequency;
+	// Db object in deze klasse omdat men dan niet via de view aan de DB
+	// functionaliteit kan. enkel de IDmodule moet dat kunnen
+	private DAO db;
+
 	/**
 	 * @return the search
 	 */
@@ -27,9 +31,6 @@ public class IDModule implements ISubject {
 	}
 
 
-	// Db object in deze klasse omdat men dan niet via de view aan de DB
-	// functionaliteit kan. enkel de IDmodule moet dat kunnen
-	private DAO db;
 
 	/**
 	 * @return the permittedFrequency
@@ -62,8 +63,9 @@ public class IDModule implements ISubject {
 	}
 
 	@Override
-	public void removeObserver(User user) {
+	public void removeObserver(User user) throws IOException, SQLException {
 		UserList.remove(user);
+		db.deleteDB(user);
 	}
 
 	@Override
