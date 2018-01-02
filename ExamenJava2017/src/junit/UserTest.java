@@ -8,6 +8,14 @@ import org.junit.Test;
 import model.User;
 import utilities.Generator;
 
+/**
+ * @author Bart Taelemans & Thomas Vanden Bossche
+ * @date 2 jan. 2018
+ * @project Afstandsbediening
+ * @purpose Run test on class User
+ *
+ */
+
 public class UserTest
 {
 	private static User user;
