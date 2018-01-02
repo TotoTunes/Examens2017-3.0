@@ -143,6 +143,7 @@ public class IDModule implements ISubject {
 			JOptionPane.showMessageDialog(null, "Poort Open en frequency updated");
 		} else if (user.getFrequency() != permittedFrequency && user.isAcces() == false) {
 			JOptionPane.showMessageDialog(null, "Acces denied, user removed");
+			db.deleteDB(user);
 		}
 	}
 
