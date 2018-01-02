@@ -137,14 +137,15 @@ public class IDModule implements ISubject {
 	@Override
 	public void openGate(User user) throws SQLException, IOException {
 		if (user.getFrequency() == permittedFrequency && user.isAcces() == true) {
-			JOptionPane.showMessageDialog(null, "Poort Open");
+			JOptionPane.showMessageDialog(null, "Poort Open "+user.getFirstName()+ " "+ user.getLastName());
 		}
 		if (user.getFrequency() != permittedFrequency && user.isAcces() == true) {
 			updateObserver(permittedFrequency, user);
-			JOptionPane.showMessageDialog(null, "Poort Open en frequency updated");
+			JOptionPane.showMessageDialog(null, "Poort Open en frequency updated "+user.getFirstName()+ " "+ user.getLastName());
 		}
 		if (user.getFrequency() != permittedFrequency && user.isAcces() == false) {
-			JOptionPane.showMessageDialog(null, "Acces denied, user removed");
+			JOptionPane.showMessageDialog(null,
+					"Acces denied, user removed , " + user.getFirstName() + " " + user.getLastName() );
 			db.deleteDB(user);
 		}
 	}

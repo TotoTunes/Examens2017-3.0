@@ -74,8 +74,12 @@ public class AfstandsbedieningTest extends JComponent {
 
 			case 5:
 				for (User user : module.getUserList()) {
+
 					module.openGate(user);
 				}
+				module.getDb().loadUserFromDB();
+				break;
+				
 			case 6:
 				JOptionPane.showMessageDialog(null, module.allToString());
 
