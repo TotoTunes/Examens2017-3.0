@@ -44,7 +44,7 @@ public class Generator {
 		FrequencyList.clear();
 	}
 	public static User GenerateUsers(double frequency){
-		User aUser = new User(true, frequency, GenerateAchternaam(), GenerateVoornaam());
+		User aUser = new User(rand.nextBoolean(), Randomfrequency(), GenerateAchternaam(), GenerateVoornaam());
 		return aUser;
 	}
 }
