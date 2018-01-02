@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import javax.swing.JOptionPane;
+
 import db.DAO;
 import utilities.Generator;
 
@@ -24,13 +26,12 @@ public class IDModule implements ISubject {
 	}
 
 	/**
-	 * @param search the search to set
+	 * @param search
+	 *            the search to set
 	 */
 	public void setSearch(ArrayList<User> search) {
 		Search = search;
 	}
-
-
 
 	/**
 	 * @return the permittedFrequency
@@ -99,7 +100,13 @@ public class IDModule implements ISubject {
 		setDb(new DAO());
 		UserList = db.loadUserFromDB();
 
-		setPermittedFrequency(Generator.Randomfrequency());
+		if (UserList.isEmpty() == true) {
+
+			setPermittedFrequency(Generator.Randomfrequency());
+		} else {
+			setPermittedFrequency(UserList.get(0).getFrequency());
+		}
+
 	}
 
 	public User GetSpecificUser(int index, ArrayList<User> list) {
@@ -117,11 +124,11 @@ public class IDModule implements ISubject {
 			if (user.getLastName().contains(naam.toUpperCase()) == true
 					|| user.getFirstName().contains(naam.toUpperCase()) == true) {
 				hUser = user;
-				buffer.append(++i +" " + hUser.toString());
+				buffer.append(++i + " " + hUser.toString());
 				Search.add(user);
 			}
 		}
-		if(Search.isEmpty()==true) {
+		if (Search.isEmpty() == true) {
 			buffer.append("geen resultaat gevonden");
 		}
 		return buffer.toString();
@@ -133,9 +140,9 @@ public class IDModule implements ISubject {
 			System.out.println("Poort Open");
 		} else if (user.getFrequency() != permittedFrequency && user.isAcces() == true) {
 			updateObserver(permittedFrequency, user);
-			System.out.println("Poort Open en frequency updated");
+			JOptionPane.showMessageDialog(null, "Poort Open en frequency updated");
 		} else if (user.getFrequency() != permittedFrequency && user.isAcces() == false) {
-			System.out.println("Acces denied, user removed");
+			JOptionPane.showMessageDialog(null, "Acces denied, user removed");
 		}
 	}
 
@@ -148,7 +155,7 @@ public class IDModule implements ISubject {
 	public StringBuffer allToString() {
 		StringBuffer buffer = new StringBuffer();
 		for (User user : UserList) {
-			buffer.append(toString(user)+"\n");
+			buffer.append(toString(user) + "\n");
 		}
 		return buffer;
 	}
