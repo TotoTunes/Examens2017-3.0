@@ -71,16 +71,17 @@ public class IDModule implements ISubject {
 	@Override
 	public void addObserver(User user) throws IOException, SQLException {
 		UserList.add(user);
-		db.updateDB(user);
+		db.insertDB(user);
 	}
 
 	@Override
-	public void updateObserver(double frequency, User user) {
+	public void updateObserver(double frequency, User user) throws SQLException, IOException {
 		user.setFrequency(frequency);
+		db.updateDB(frequency);
 	}
 
 	@Override
-	public void notifyAll(ArrayList<User> arrayList) {
+	public void notifyAll(ArrayList<User> arrayList) throws SQLException, IOException {
 		System.out.print("Udate Frequentie");
 		for (User user : arrayList) {
 			updateObserver(Generator.Randomfrequency(), user);
@@ -120,11 +121,14 @@ public class IDModule implements ISubject {
 				Search.add(user);
 			}
 		}
+		if(Search.isEmpty()==true) {
+			buffer.append("geen resultaat gevonden");
+		}
 		return buffer.toString();
 	}
 
 	@Override
-	public void openGate(User user) {
+	public void openGate(User user) throws SQLException, IOException {
 		if (user.getFrequency() == permittedFrequency && user.isAcces() == true) {
 			System.out.println("Poort Open");
 		} else if (user.getFrequency() != permittedFrequency && user.isAcces() == true) {

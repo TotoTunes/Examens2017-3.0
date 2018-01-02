@@ -43,15 +43,19 @@ public class AfstandsbedieningTest extends JComponent {
 				for (int i = 0; i < 50; ++i) {
 					User aUser = Generator.GenerateUsers(module.getPermittedFrequency());
 					module.addObserver(aUser);
-					alles.append(aUser.toString());	
+					alles.append(aUser.toString());
 				}
 				JOptionPane.showMessageDialog(null, alles);
 				// logger.info(alles.toString());
 				break;
 			case 2:
 				String achternaam = JOptionPane.showInputDialog("Geef een naam in: ");
-				int g = Integer.parseInt(JOptionPane.showInputDialog( module.GetSpecificUser(achternaam) + "\n Geef het nummer in van de persoon die je wilt verwijderen"));
-				module.removeObserver(module.GetSpecificUser(g-1, module.getSearch()));
+				int g = Integer.parseInt(JOptionPane.showInputDialog(module.GetSpecificUser(achternaam)
+						+ "\n Geef het nummer in van de persoon die je wilt verwijderen\n EXIT =0"));
+				if (g >0) {
+					module.removeObserver(module.GetSpecificUser(g - 1, module.getSearch()));
+				}
+
 				break;
 			case 3:
 				module.setPermittedFrequency(Generator.Randomfrequency());

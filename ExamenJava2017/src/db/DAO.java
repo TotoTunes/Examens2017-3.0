@@ -85,7 +85,7 @@ public class DAO {
 		return personen;
 	}
 
-	public void updateDB(User user) throws IOException, SQLException {
+	public void insertDB(User user) throws IOException, SQLException {
 		conn = ConnectDB();
 		Statement statement = (Statement) conn.createStatement();
 
@@ -102,6 +102,14 @@ public class DAO {
 		String delete = "DELETE FROM bewoners where voornaam = '" + user.getFirstName() + "' AND achternaam = '"
 				+ user.getLastName() + "'";
 		statement.execute(delete);
+		statement.close();
+	}
+
+	public void updateDB(double frequency) throws SQLException, IOException {
+		conn = ConnectDB();
+		Statement statement = (Statement) conn.createStatement();
+		String update = "UPDATE bewoners SET frequency = " + frequency + " WHERE acces=true";
+		statement.execute(update);
 		statement.close();
 	}
 }

@@ -7,7 +7,7 @@ import java.util.ArrayList;
 public interface ISubject {
 	void removeObserver (User user) throws IOException, SQLException;
 	void addObserver(User user) throws IOException, SQLException;
-	void updateObserver(double frequency, User user);
-	void notifyAll(ArrayList<User> arrayList);
-	void openGate(User user);
+	void updateObserver(double frequency, User user) throws SQLException, IOException;
+	void notifyAll(ArrayList<User> arrayList) throws SQLException, IOException;
+	void openGate(User user) throws SQLException, IOException;
 }
