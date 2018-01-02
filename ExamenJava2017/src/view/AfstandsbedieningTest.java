@@ -33,7 +33,7 @@ public class AfstandsbedieningTest extends JComponent {
 		do {
 
 			String a = JOptionPane.showInputDialog(
-					"Geef je keuze in: \n Willekeurige users maken = 1 \n user verwijderen = 2 \n Frequentie veranderen = 3\n Nieuwe User invoeren = 4 \n Poort openen = 5");
+					"Geef je keuze in: \n Willekeurige users maken = 1 \n user verwijderen = 2 \n Frequentie veranderen = 3\n Nieuwe User invoeren = 4 \n Poort openen = 5\n Toon alle users = 6");
 			int keuze = Integer.parseInt(a);
 
 			switch (keuze) {
@@ -52,7 +52,7 @@ public class AfstandsbedieningTest extends JComponent {
 				String achternaam = JOptionPane.showInputDialog("Geef een naam in: ");
 				int g = Integer.parseInt(JOptionPane.showInputDialog(module.GetSpecificUser(achternaam)
 						+ "\n Geef het nummer in van de persoon die je wilt verwijderen\n EXIT =0"));
-				if (g >0) {
+				if (g > 0) {
 					module.removeObserver(module.GetSpecificUser(g - 1, module.getSearch()));
 				}
 
@@ -76,6 +76,8 @@ public class AfstandsbedieningTest extends JComponent {
 				for (User user : module.getUserList()) {
 					module.openGate(user);
 				}
+			case 6:
+				JOptionPane.showMessageDialog(null, module.allToString());
 
 				break;
 			default:

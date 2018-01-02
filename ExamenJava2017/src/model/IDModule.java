@@ -148,7 +148,7 @@ public class IDModule implements ISubject {
 	public StringBuffer allToString() {
 		StringBuffer buffer = new StringBuffer();
 		for (User user : UserList) {
-			buffer.append(toString(user));
+			buffer.append(toString(user)+"\n");
 		}
 		return buffer;
 	}
