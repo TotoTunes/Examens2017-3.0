@@ -1,7 +1,5 @@
 package junit;
 
-import java.util.Random;
-
 import org.junit.Test;
 
 import utilities.Generator;
@@ -16,8 +14,6 @@ import utilities.Generator;
 
 public class GeneratorTest
 {
-	@SuppressWarnings("unused")
-
 	@Test
 	public void testGenerateVoornaam()
 	{
@@ -45,11 +41,7 @@ public class GeneratorTest
 	@Test
 	public void testGenerateUsers()
 	{
-		Random random = new Random();
-		int a = random.nextInt(900);
-		double b = random.nextDouble();
-		double frequency = a + b;
-		Generator.GenerateUsers(frequency);
+		Generator.GenerateUsers(Generator.Randomfrequency());
 	}
 
 
