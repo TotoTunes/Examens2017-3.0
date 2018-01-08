@@ -19,17 +19,18 @@ import utilities.Generator;
 
 public class IDModuleTest
 {
-	
+
 	private static Random random;
 	private static IDModule iDModule;
 	private static User user;
-	
+
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception
 	{
 		iDModule = new IDModule();
 		random = new Random();
-		user = new User(random.nextBoolean(), Generator.Randomfrequency(), Generator.GenerateAchternaam(), Generator.GenerateVoornaam());
+		user = new User(random.nextBoolean(), Generator.Randomfrequency(), Generator.GenerateAchternaam(),
+				Generator.GenerateVoornaam());
 	}
 
 	@Test

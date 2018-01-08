@@ -16,7 +16,16 @@ import com.mysql.jdbc.Statement;
 
 import model.User;
 
-public class DAO {
+/**
+ * @author Bart Taelemans & Thomas Vanden Bossche
+ * @date 1 jan. 2018
+ * @project Afstandsbediening
+ * @purpose Class voor aanmaken DB-connectie
+ *
+ */
+
+public class DAO
+{
 
 	String Query = "Select * from afstandsbediening.bewoners";
 
@@ -26,7 +35,8 @@ public class DAO {
 	/**
 	 * @return the conn
 	 */
-	public Connection getConn() {
+	public Connection getConn()
+	{
 		return conn;
 	}
 
@@ -34,17 +44,21 @@ public class DAO {
 	 * @param conn
 	 *            the conn to set
 	 */
-	public void setConn(Connection conn) {
+	public void setConn(Connection conn)
+	{
 		this.conn = conn;
 	}
 
-	private Properties GetDBproperties(String filename) throws IOException {
+	private Properties GetDBproperties(String filename) throws IOException
+	{
 		properties = new Properties();
-		try {
+		try
+		{
 			FileInputStream fileInputStream = new FileInputStream(filename);
 			properties.load(fileInputStream);
 			fileInputStream.close();
-		} catch (FileNotFoundException e1) {
+		} catch (FileNotFoundException e1)
+		{
 			JOptionPane.showMessageDialog(null, "verbinding niet gelukt");
 			e1.printStackTrace();
 		}
@@ -53,26 +67,30 @@ public class DAO {
 
 	}
 
-	public Connection ConnectDB() throws IOException {
+	public Connection ConnectDB() throws IOException
+	{
 		Connection connection;
 		GetDBproperties("DBproperties.properties");
-		try {
+		try
+		{
 			connection = DriverManager.getConnection(properties.getProperty("url"), properties.getProperty("user"),
 					properties.getProperty("password"));
-			// System.out.println("Database connected!, Dit moet nog verwijderd worden");
-		} catch (SQLException e) {
+		} catch (SQLException e)
+		{
 			throw new IllegalStateException("Cannot connect the database!", e);
 		}
 		return connection;
 	}
 
-	public ArrayList<User> loadUserFromDB() throws IOException, SQLException {
+	public ArrayList<User> loadUserFromDB() throws IOException, SQLException
+	{
 		conn = ConnectDB();
 		Statement statement = (Statement) conn.createStatement();
 		ResultSet resultSet = statement.executeQuery(Query);
 		User user = null;
 		ArrayList<User> personen = new ArrayList<User>();
-		while (resultSet.next()) {
+		while (resultSet.next())
+		{
 			String voornaam = resultSet.getString("voornaam");
 			String achternaam = resultSet.getString("achternaam");
 			double frequency = resultSet.getDouble("frequency");
@@ -85,7 +103,8 @@ public class DAO {
 		return personen;
 	}
 
-	public void insertDB(User user) throws IOException, SQLException {
+	public void insertDB(User user) throws IOException, SQLException
+	{
 		conn = ConnectDB();
 		Statement statement = (Statement) conn.createStatement();
 
@@ -95,7 +114,8 @@ public class DAO {
 		statement.close();
 	}
 
-	public void deleteDB(User user) throws IOException, SQLException {
+	public void deleteDB(User user) throws IOException, SQLException
+	{
 		conn = ConnectDB();
 		Statement statement = (Statement) conn.createStatement();
 
@@ -105,7 +125,8 @@ public class DAO {
 		statement.close();
 	}
 
-	public void updateDB(double frequency) throws SQLException, IOException {
+	public void updateDB(double frequency) throws SQLException, IOException
+	{
 		conn = ConnectDB();
 		Statement statement = (Statement) conn.createStatement();
 		String update = "UPDATE bewoners SET frequency = " + frequency + " WHERE acces=true";

@@ -9,7 +9,16 @@ import javax.swing.JOptionPane;
 import db.DAO;
 import utilities.Generator;
 
-public class IDModule implements ISubject {
+/**
+ * @author Bart Taelemans & Thomas Vanden Bossche
+ * @date 1 jan. 2018
+ * @project Afstandsbediening
+ * @purpose Class voor subject in observer pattern
+ *
+ */
+
+public class IDModule implements ISubject
+{
 
 	private ArrayList<User> UserList;
 	ArrayList<User> Search;
@@ -21,7 +30,8 @@ public class IDModule implements ISubject {
 	/**
 	 * @return the search
 	 */
-	public ArrayList<User> getSearch() {
+	public ArrayList<User> getSearch()
+	{
 		return Search;
 	}
 
@@ -29,14 +39,16 @@ public class IDModule implements ISubject {
 	 * @param search
 	 *            the search to set
 	 */
-	public void setSearch(ArrayList<User> search) {
+	public void setSearch(ArrayList<User> search)
+	{
 		Search = search;
 	}
 
 	/**
 	 * @return the permittedFrequency
 	 */
-	public double getPermittedFrequency() {
+	public double getPermittedFrequency()
+	{
 		return permittedFrequency;
 	}
 
@@ -44,14 +56,16 @@ public class IDModule implements ISubject {
 	 * @param permittedFrequency
 	 *            the permittedFrequency to set
 	 */
-	public void setPermittedFrequency(double permittedFrequency) {
+	public void setPermittedFrequency(double permittedFrequency)
+	{
 		this.permittedFrequency = permittedFrequency;
 	}
 
 	/**
 	 * @return the userList
 	 */
-	public ArrayList<User> getUserList() {
+	public ArrayList<User> getUserList()
+	{
 		return UserList;
 	}
 
@@ -59,32 +73,38 @@ public class IDModule implements ISubject {
 	 * @param userList
 	 *            the userList to set
 	 */
-	public void setUserList(ArrayList<User> userList) {
+	public void setUserList(ArrayList<User> userList)
+	{
 		UserList = userList;
 	}
 
 	@Override
-	public void removeObserver(User user) throws IOException, SQLException {
+	public void removeObserver(User user) throws IOException, SQLException
+	{
 		UserList.remove(user);
 		db.deleteDB(user);
 	}
 
 	@Override
-	public void addObserver(User user) throws IOException, SQLException {
+	public void addObserver(User user) throws IOException, SQLException
+	{
 		UserList.add(user);
 		db.insertDB(user);
 	}
 
 	@Override
-	public void updateObserver(double frequency, User user) throws SQLException, IOException {
+	public void updateObserver(double frequency, User user) throws SQLException, IOException
+	{
 		user.setFrequency(frequency);
 		db.updateDB(frequency);
 	}
 
 	@Override
-	public void notifyAll(ArrayList<User> arrayList) throws SQLException, IOException {
+	public void notifyAll(ArrayList<User> arrayList) throws SQLException, IOException
+	{
 		System.out.print("Udate Frequentie");
-		for (User user : arrayList) {
+		for (User user : arrayList)
+		{
 			updateObserver(Generator.Randomfrequency(), user);
 		}
 
@@ -95,80 +115,98 @@ public class IDModule implements ISubject {
 	 * @throws SQLException
 	 * @throws IOException
 	 */
-	public IDModule() throws IOException, SQLException {
+	public IDModule() throws IOException, SQLException
+	{
 		super();
 		setDb(new DAO());
 		UserList = db.loadUserFromDB();
 
-		if (UserList.isEmpty() == true) {
+		if (UserList.isEmpty() == true)
+		{
 
 			setPermittedFrequency(Generator.Randomfrequency());
-		} else {
+		} else
+		{
 			setPermittedFrequency(UserList.get(0).getFrequency());
 		}
 
 	}
 
-	public User GetSpecificUser(int index, ArrayList<User> list) {
+	public User GetSpecificUser(int index, ArrayList<User> list)
+	{
 		User user = list.get(index);
 		return user;
 	}
 
 	@SuppressWarnings("unused")
-	public String GetSpecificUser(String naam) {
+	public String GetSpecificUser(String naam)
+	{
 		User hUser = null;
 		Search = new ArrayList<>();
 		StringBuffer buffer = new StringBuffer();
 		int i = 0;
-		for (User user : UserList) {
+		for (User user : UserList)
+		{
 			if (user.getLastName().contains(naam.toUpperCase()) == true
-					|| user.getFirstName().contains(naam.toUpperCase()) == true) {
+					|| user.getFirstName().contains(naam.toUpperCase()) == true)
+			{
 				hUser = user;
 				buffer.append(++i + " " + hUser.toString());
 				Search.add(user);
 			}
 		}
-		if (Search.isEmpty() == true) {
+		if (Search.isEmpty() == true)
+		{
 			buffer.append("geen resultaat gevonden");
 		}
 		return buffer.toString();
 	}
 
 	@Override
-	public void openGate(User user) throws SQLException, IOException {
-		if (user.getFrequency() == permittedFrequency && user.isAcces() == true) {
-			JOptionPane.showMessageDialog(null, "Poort Open "+user.getFirstName()+ " "+ user.getLastName());
+	public void openGate(User user) throws SQLException, IOException
+	{
+		if (user.getFrequency() == permittedFrequency && user.isAcces() == true)
+		{
+			JOptionPane.showMessageDialog(null, "Poort Open " + user.getFirstName() + " " + user.getLastName());
 		}
-		if (user.getFrequency() != permittedFrequency && user.isAcces() == true) {
+		if (user.getFrequency() != permittedFrequency && user.isAcces() == true)
+		{
 			updateObserver(permittedFrequency, user);
-			JOptionPane.showMessageDialog(null, "Poort Open en frequency updated "+user.getFirstName()+ " "+ user.getLastName());
-		}
-		if (user.getFrequency() != permittedFrequency && user.isAcces() == false) {
 			JOptionPane.showMessageDialog(null,
-					"Acces denied, user removed , " + user.getFirstName() + " " + user.getLastName() );
+					"Poort Open en frequency updated " + user.getFirstName() + " " + user.getLastName());
+		}
+		if (user.getFrequency() != permittedFrequency && user.isAcces() == false)
+		{
+			JOptionPane.showMessageDialog(null,
+					"Acces denied, user removed , " + user.getFirstName() + " " + user.getLastName());
 			db.deleteDB(user);
 		}
 	}
 
-	public String toString(User user) {
+	public String toString(User user)
+	{
 		String beschrijving = "Ik ben " + user.getFirstName() + " " + user.getLastName() + " ( Frequency "
 				+ user.getFrequency() + ", Toegang " + user.isAcces() + " )";
 		return beschrijving;
 	}
 
-	public StringBuffer allToString() {
+	public StringBuffer allToString()
+	{
 		StringBuffer buffer = new StringBuffer();
-		for (User user : UserList) {
+		for (User user : UserList)
+		{
 			buffer.append(toString(user) + "\n");
 		}
 		return buffer;
 	}
 
-	public DAO getDb() {
+	public DAO getDb()
+	{
 		return db;
 	}
 
-	public void setDb(DAO db) {
+	public void setDb(DAO db)
+	{
 		this.db = db;
 	}
 

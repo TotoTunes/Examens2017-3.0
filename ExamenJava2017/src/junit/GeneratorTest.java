@@ -25,13 +25,13 @@ public class GeneratorTest
 	{
 		Generator.GenerateAchternaam();
 	}
-	
+
 	@Test
 	public void testRandomFrequency()
 	{
 		Generator.Randomfrequency();
 	}
-	
+
 	@Test
 	public void testClearFrequencyList()
 	{
@@ -43,6 +43,5 @@ public class GeneratorTest
 	{
 		Generator.GenerateUsers(Generator.Randomfrequency());
 	}
-
 
 }

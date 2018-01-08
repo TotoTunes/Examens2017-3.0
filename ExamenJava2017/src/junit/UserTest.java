@@ -20,12 +20,13 @@ public class UserTest
 {
 	private static User user;
 	private static Random random;
-	
+
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception
 	{
 		random = new Random();
-		user = new User(random.nextBoolean(), Generator.Randomfrequency(), Generator.GenerateAchternaam(), Generator.GenerateVoornaam());
+		user = new User(random.nextBoolean(), Generator.Randomfrequency(), Generator.GenerateAchternaam(),
+				Generator.GenerateVoornaam());
 	}
 
 	@Test

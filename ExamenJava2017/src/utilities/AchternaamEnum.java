@@ -1,7 +1,15 @@
 package utilities;
 
-public enum AchternaamEnum {
+/**
+ * @author Bart Taelemans & Thomas Vanden Bossche
+ * @date 1 jan. 2018
+ * @project Afstandsbediening
+ * @purpose Enumeration voor random achternamen
+ *
+ */
 
+public enum AchternaamEnum
+{
 	VANDENBOSSCHE,
 	ALVAREZ,
 	TORDEUR,

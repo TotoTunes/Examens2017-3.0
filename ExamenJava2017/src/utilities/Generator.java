@@ -5,47 +5,64 @@ import java.util.Random;
 
 import model.User;
 
-public class Generator {
+/**
+ * @author Bart Taelemans & Thomas Vanden Bossche
+ * @date 1 jan. 2018
+ * @project Afstandsbediening
+ * @purpose Generator voor aanmaken users en frequenties
+ *
+ */
+
+public class Generator
+{
 
 	private static Random rand = new Random();
 	private static ArrayList<Double> FrequencyList = new ArrayList<Double>();
 
-	public static String GenerateVoornaam() {
+	public static String GenerateVoornaam()
+	{
 
 		VoornaamEnum voornaam = VoornaamEnum.values()[rand.nextInt(VoornaamEnum.values().length)];
 		String result = voornaam.toString();
 		return result;
 	}
 
-	public static String GenerateAchternaam() {
+	public static String GenerateAchternaam()
+	{
 		AchternaamEnum achternaam = AchternaamEnum.values()[rand.nextInt(AchternaamEnum.values().length)];
 		String result = achternaam.toString();
 		return result;
 	}
 
-	public static double Randomfrequency() {
+	public static double Randomfrequency()
+	{
 		int a = rand.nextInt(900);
 		double b = rand.nextDouble();
-		if (FrequencyList.contains(a + b) == true) {
+		if (FrequencyList.contains(a + b) == true)
+		{
 			Randomfrequency();
-		} else {
+		} else
+		{
 			AddFrequency(a + b);
 		}
 
 		return a + b;
 	}
 
-	private static void AddFrequency(double a) {
+	private static void AddFrequency(double a)
+	{
 		FrequencyList.add(a);
 	}
 
-	public static void ClearFrequencyList() {
+	public static void ClearFrequencyList()
+	{
 		FrequencyList.clear();
 	}
 	// alles random gemaakt zodat we daarna kunnen zien of het programma de juiste
 	// handelingen uitvoert
 
-	public static User GenerateUsers(double frequency) {
+	public static User GenerateUsers(double frequency)
+	{
 		User aUser = new User(rand.nextBoolean(), Randomfrequency(), GenerateAchternaam(), GenerateVoornaam());
 		return aUser;
 	}

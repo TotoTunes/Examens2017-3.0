@@ -1,13 +1,15 @@
-/**
- * 
- */
 package utilities;
 
 /**
- * @author VDT
+ * @author Bart Taelemans & Thomas Vanden Bossche
+ * @date 1 jan. 2018
+ * @project Afstandsbediening
+ * @purpose Enumeration voor random voornamen
  *
  */
-public enum VoornaamEnum {
+
+public enum VoornaamEnum
+{
 	THOMAS, 
 	KEVIN, 
 	HUGO, 
