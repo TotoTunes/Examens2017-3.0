@@ -1,8 +1,15 @@
 package junit;
 
+import static org.junit.Assert.assertTrue;
+
+import java.util.ArrayList;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
+import model.User;
+import utilities.AchternaamEnum;
 import utilities.Generator;
+import utilities.VoornaamEnum;
 
 /**
  * @author Bart Taelemans & Thomas Vanden Bossche
@@ -14,22 +21,43 @@ import utilities.Generator;
 
 public class GeneratorTest
 {
+	private static ArrayList<String> voornamen;
+	private static ArrayList<String> achternamen;
+
+	@BeforeClass
+	public static void setUpBeforeClass()
+	{
+		voornamen = new ArrayList<>();
+		achternamen = new ArrayList<>();
+		for (Object obj : VoornaamEnum.values())
+		{
+			voornamen.add(obj.toString());
+		}
+		for (Object obj : AchternaamEnum.values())
+		{
+			achternamen.add(obj.toString());
+		}
+	}
+
 	@Test
 	public void testGenerateVoornaam()
 	{
-		Generator.GenerateVoornaam();
+		String voornaam = Generator.GenerateVoornaam();
+		assertTrue("Voornaam niet in lijst", voornamen.contains(voornaam));
 	}
 
 	@Test
 	public void testGenerateAchternaam()
 	{
-		Generator.GenerateAchternaam();
+		String achternaam = Generator.GenerateAchternaam();
+		assertTrue("Achternaam niet in lijst", achternamen.contains(achternaam));
 	}
 
 	@Test
 	public void testRandomFrequency()
 	{
-		Generator.Randomfrequency();
+		Double frequency = Generator.Randomfrequency();
+		assertTrue("Frequentie niet correct", frequency > 0);
 	}
 
 	@Test
@@ -41,7 +69,9 @@ public class GeneratorTest
 	@Test
 	public void testGenerateUsers()
 	{
-		Generator.GenerateUsers(Generator.Randomfrequency());
+		User user = Generator.GenerateUsers(Generator.Randomfrequency());
+		assertTrue("Gebruiker incorrect", voornamen.contains(user.getFirstName())
+				&& achternamen.contains(user.getLastName()) && user.getFrequency() > 0);
 	}
 
 }
