@@ -26,7 +26,7 @@ import model.User;
 
 public class DAO {
 
-	String Query = "Select * from afstandsbediening.bewoners";
+	private String Query = "Select * from afstandsbediening.bewoners";
 
 	private Properties properties;
 	private Connection conn;

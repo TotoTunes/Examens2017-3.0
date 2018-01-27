@@ -83,7 +83,7 @@ public class User implements IObserver
 	 * @param frequency
 	 *            the frequency to set
 	 */
-	public void setFrequency(double frequency)
+	private void setFrequency(double frequency)
 	{
 		this.frequency = frequency;
 	}

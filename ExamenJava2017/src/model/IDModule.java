@@ -104,7 +104,7 @@ public class IDModule implements ISubject
 	{
 		if (user.isAcces() == true)
 		{
-			user.setFrequency(frequency);
+			user.handleNotification(frequency);
 			db.updateDB(frequency);
 		}
 	}
