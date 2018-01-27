@@ -1,5 +1,6 @@
 package junit;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 import java.util.Random;
@@ -9,7 +10,6 @@ import org.junit.Test;
 
 import model.IDModule;
 import model.User;
-import utilities.Generator;
 
 /**
  * @author Bart Taelemans & Thomas Vanden Bossche
@@ -22,7 +22,6 @@ import utilities.Generator;
 public class IDModuleTest
 {
 
-	private static Random random;
 	private static IDModule iDModule;
 	private static User user;
 
@@ -30,9 +29,8 @@ public class IDModuleTest
 	public static void setUpBeforeClass() throws Exception
 	{
 		iDModule = new IDModule();
-		random = new Random();
-		user = new User(random.nextBoolean(), Generator.Randomfrequency(), Generator.GenerateAchternaam(),
-				Generator.GenerateVoornaam());
+		new Random();
+		user = new User(true, 802.11, "Vanden bossche", "Thomas");
 	}
 
 	@Test
@@ -46,37 +44,51 @@ public class IDModuleTest
 	public void testAddObserver() throws Exception
 	{
 		iDModule.addObserver(user);
-		assertTrue("Gebruikersnaam is leeg", user.getLastName() != null);
+		assertTrue("Gebruikersnaam is leeg", user.getLastName() != null && user.isAcces() == true);
 	}
 
 	@Test
 	public void testUpdateObserver() throws Exception
 	{
-		iDModule.updateObserver(Generator.Randomfrequency(), user);
+		iDModule.updateObserver(802.11, user);
+		assertEquals(802.11, user.getFrequency(), 0);
 	}
 
-//	@Test
-//	public void testNotifyAllArrayListOfUser() throws Exception
-//	{
-//		iDModule.notifyAll(iDModule.getUserList());
-//	}
+	 @Test
+	 public void testNotifyAllArrayListOfUser() throws Exception
+	 {
+		 iDModule.notifyAll(iDModule.getUserList());
+		 for (User user : iDModule.getUserList())
+		{
+			if (user.isAcces())
+			{
+				assertEquals(iDModule.getPermittedFrequency(), user.getFrequency(), 0);
+			}
+		}
+	 }
 
 	@Test
 	public void testGetSpecificUserIntArrayListOfUser()
 	{
-		iDModule.GetSpecificUser(random.nextInt(iDModule.getUserList().size()), iDModule.getUserList());
+		iDModule.GetSpecificUser(iDModule.getUserList().indexOf(user), iDModule.getUserList());
+		assertEquals(user, user);
 	}
 
 	@Test
 	public void testGetSpecificUserString()
 	{
-		iDModule.GetSpecificUser(Generator.GenerateAchternaam());
+		iDModule.GetSpecificUser(user.getLastName());
+		assertEquals(user, user);
 	}
 
-//	@Test
-//	public void testOpenGate() throws Exception
-//	{
-//		iDModule.openGate(user);
-//	}
+	 @Test
+	 public void testOpenGate() throws Exception
+	 {
+		 iDModule.openGate(user);
+		 if (user.isAcces())
+		{
+			assertEquals(iDModule.getPermittedFrequency(), user.getFrequency(), 0);
+		}
+	 }
 
 }

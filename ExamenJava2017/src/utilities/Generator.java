@@ -18,7 +18,7 @@ public class Generator
 {
 
 	private static Random rand = new Random();
-	public static ArrayList<Double> FrequencyList = new ArrayList<Double>();
+	private static ArrayList<Double> FrequencyList = new ArrayList<Double>();
 
 	public static String GenerateVoornaam()
 	{
@@ -63,4 +63,22 @@ public class Generator
 		User aUser = new User(rand.nextBoolean(), Randomfrequency(), GenerateAchternaam(), GenerateVoornaam());
 		return aUser;
 	}
+
+	/**
+	 * @return the frequencyList
+	 */
+	public static ArrayList<Double> getFrequencyList()
+	{
+		return FrequencyList;
+	}
+
+	/**
+	 * @param frequencyList the frequencyList to set
+	 */
+	public static void setFrequencyList(ArrayList<Double> frequencyList)
+	{
+		FrequencyList = frequencyList;
+	}
+	
+	
 }
