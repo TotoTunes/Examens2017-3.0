@@ -79,13 +79,13 @@ public class AfstandsbedieningTest extends JComponent
 					break;
 
 				case 5:
-					for (User user : module.getUserList())
+					String achternaam1 = JOptionPane.showInputDialog("Geef een naam in: ");
+					int g1 = Integer.parseInt(JOptionPane.showInputDialog(module.GetSpecificUser(achternaam1)
+							+ "\n Geef het nummer in van de persoon die je wilt verwijderen\n EXIT =0"));
+					if (g1 > 0)
 					{
-
-						module.openGate(user);
-					}
-					module.getDb().loadUserFromDB(); // opnieuw inladen van lijst db in Arraylist na verwijderen user
-														// uit db
+						module.openGate(module.GetSpecificUser(g1 - 1, module.getSearch()));
+					}								// uit db
 					break;
 
 				case 6:

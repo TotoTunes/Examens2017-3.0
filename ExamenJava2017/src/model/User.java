@@ -112,7 +112,7 @@ public class User implements IObserver
 
 	public String toString()
 	{
-		String beschrijving = firstName + " " + lastName + " " + frequency + "\n";
+		String beschrijving = firstName + " " + lastName + " " + frequency +" " +isAcces() + "\n";
 		return beschrijving;
 	}
 }

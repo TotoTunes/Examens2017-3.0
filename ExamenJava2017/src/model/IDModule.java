@@ -21,7 +21,7 @@ public class IDModule implements ISubject
 {
 
 	private ArrayList<User> UserList;
-	ArrayList<User> Search;
+	private ArrayList<User> Search;
 	private double permittedFrequency;
 	// Db object in deze klasse omdat men dan niet via de view aan de DB
 	// functionaliteit kan. enkel de IDmodule moet dat kunnen
@@ -81,8 +81,8 @@ public class IDModule implements ISubject
 	@Override
 	public void removeObserver(User user) throws IOException, SQLException
 	{
-		UserList.remove(user);
-		db.deleteDB(user);
+		user.setAcces(false);
+		db.removeDB(user);
 	}
 
 	@Override
@@ -178,8 +178,7 @@ public class IDModule implements ISubject
 		if (user.getFrequency() != permittedFrequency && user.isAcces() == false)
 		{
 			JOptionPane.showMessageDialog(null,
-					"Acces denied, user removed , " + user.getFirstName() + " " + user.getLastName());
-			db.deleteDB(user);
+					"Acces denied " + user.getFirstName() + " " + user.getLastName());
 		}
 	}
 
