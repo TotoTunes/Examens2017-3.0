@@ -112,7 +112,6 @@ public class IDModule implements ISubject
 	@Override
 	public void notifyAll(ArrayList<User> arrayList) throws SQLException, IOException
 	{
-		System.out.print("Update Frequentie voor alle gebruikers");
 		for (User user : arrayList)
 		{
 			updateObserver(getPermittedFrequency(), user);
