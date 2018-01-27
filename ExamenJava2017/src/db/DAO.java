@@ -111,11 +111,21 @@ public class DAO {
 		statement.execute(remove);
 		statement.close();
 	}
+	
+	public void setAccessTrue(User user) throws IOException, SQLException {
+		conn = ConnectDB();
+		Statement statement = (Statement) conn.createStatement();
+
+		String accessTrue = "UPDATE bewoners SET acces = '" + 1 + "' WHERE voornaam ='" + user.getFirstName()
+				+ "' AND achternaam = '" + user.getLastName()+"'";
+		statement.execute(accessTrue);
+		statement.close();
+	}
 
 	public void updateDB(double frequency) throws SQLException, IOException {
 		conn = ConnectDB();
 		Statement statement = (Statement) conn.createStatement();
-		String update = "UPDATE bewoners SET frequency = " + frequency + " WHERE acces= 'true'";
+		String update = "UPDATE bewoners SET frequency = " + frequency + " WHERE acces= 1";
 		statement.execute(update);
 		statement.close();
 	}

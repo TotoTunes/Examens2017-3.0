@@ -1,5 +1,6 @@
 package junit;
 
+import static org.junit.Assert.assertEquals;
 import java.util.Random;
 
 import org.junit.BeforeClass;
@@ -25,14 +26,15 @@ public class UserTest
 	public static void setUpBeforeClass() throws Exception
 	{
 		random = new Random();
-		user = new User(random.nextBoolean(), Generator.Randomfrequency(), Generator.GenerateAchternaam(),
+		user = new User(random.nextBoolean(), 205.13, Generator.GenerateAchternaam(),
 				Generator.GenerateVoornaam());
 	}
 
 	@Test
 	public void testHandleNotification()
 	{
-		user.handleNotification(Generator.Randomfrequency());
+		user.handleNotification(205.13);
+		assertEquals(205.13, user.getFrequency(), 0);
 	}
 
 }

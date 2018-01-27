@@ -35,8 +35,9 @@ public class AfstandsbedieningTest extends JComponent
 			do
 			{
 
-				String a = JOptionPane.showInputDialog(
-						"Geef je keuze in: \n Willekeurige users maken = 1 \n user verwijderen = 2 \n Frequentie veranderen = 3\n Nieuwe User invoeren = 4 \n Poort openen = 5\n Toon alle users = 6");
+				String a = JOptionPane.showInputDialog("Geef je keuze in: " + "\n1. Willekeurige users maken"
+						+ "\n2. User (de)activeren " + "\n3. Frequentie poort veranderen " + "\n4. Nieuwe User invoeren "
+						+ "\n5. Poort openen " + "\n6. Toon alle users" + "\n7. Update alle afstandsbedieningen");
 				int keuze = Integer.parseInt(a);
 
 				switch (keuze)
@@ -44,7 +45,7 @@ public class AfstandsbedieningTest extends JComponent
 
 				case 1:
 					StringBuffer alles = new StringBuffer();
-					for (int i = 0; i < 50; ++i)
+					for (int i = 0; i < 20; ++i)
 					{
 						User aUser = Generator.GenerateUsers(module.getPermittedFrequency());
 						module.addObserver(aUser);
@@ -55,22 +56,28 @@ public class AfstandsbedieningTest extends JComponent
 				case 2:
 					String achternaam = JOptionPane.showInputDialog("Geef een naam in: ");
 					int g = Integer.parseInt(JOptionPane.showInputDialog(module.GetSpecificUser(achternaam)
-							+ "\n Geef het nummer in van de persoon die je wilt verwijderen\n EXIT =0"));
+							+ "\n Geef het nummer in van de persoon die je wilt (de)activeren\n EXIT =0"));
 					if (g > 0)
 					{
-						module.removeObserver(module.GetSpecificUser(g - 1, module.getSearch()));
+						// module.removeObserver(module.GetSpecificUser(g - 1, module.getSearch()));
+						User userToChange = module.GetSpecificUser(g - 1, module.getSearch());
+						if (userToChange.isAcces() == true)
+						{
+							module.removeObserver(userToChange);
+							JOptionPane.showMessageDialog(null, "De gebruiker heeft geen toegang meer");
+
+						} else
+						{
+							module.addObserver(userToChange);
+							JOptionPane.showMessageDialog(null, "De gebruiker heeft nu toegang");
+						}
 					}
 
 					break;
 				case 3:
 					module.setPermittedFrequency(Generator.Randomfrequency());
-					StringBuffer all = new StringBuffer();
-					for (User bUser : module.getUserList())
-					{
-						module.updateObserver(module.getPermittedFrequency(), bUser);
-						all.append(bUser.toString());
-					}
-					JOptionPane.showMessageDialog(null, all.toString());
+					JOptionPane.showMessageDialog(null,
+							"Frequentie poort aangepast naar " + module.getPermittedFrequency());
 					break;
 				case 4:
 					String lastname = JOptionPane.showInputDialog("Geef de achternaam in");
@@ -85,12 +92,16 @@ public class AfstandsbedieningTest extends JComponent
 					if (g1 > 0)
 					{
 						module.openGate(module.GetSpecificUser(g1 - 1, module.getSearch()));
-					}								// uit db
+					} // uit db
 					break;
 
 				case 6:
 					JOptionPane.showMessageDialog(null, module.allToString());
 
+					break;
+				case 7:
+					module.notifyAll(module.getUserList());
+					JOptionPane.showMessageDialog(null, "Alle gebruikers met toegang hebben een nieuwe frequentie");
 					break;
 				default:
 					System.out.println("Fout");

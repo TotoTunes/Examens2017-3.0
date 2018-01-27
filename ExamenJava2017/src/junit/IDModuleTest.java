@@ -1,5 +1,7 @@
 package junit;
 
+import static org.junit.Assert.assertTrue;
+
 import java.util.Random;
 
 import org.junit.BeforeClass;
@@ -37,12 +39,14 @@ public class IDModuleTest
 	public void testRemoveObserver() throws Exception
 	{
 		iDModule.removeObserver(user);
+		assertTrue("Gebruiker heeft nog toegang", user.isAcces() == false);
 	}
 
 	@Test
 	public void testAddObserver() throws Exception
 	{
 		iDModule.addObserver(user);
+		assertTrue("Gebruikersnaam is leeg", user.getLastName() != null);
 	}
 
 	@Test
@@ -51,11 +55,11 @@ public class IDModuleTest
 		iDModule.updateObserver(Generator.Randomfrequency(), user);
 	}
 
-	@Test
-	public void testNotifyAllArrayListOfUser() throws Exception
-	{
-		iDModule.notifyAll(iDModule.getUserList());
-	}
+//	@Test
+//	public void testNotifyAllArrayListOfUser() throws Exception
+//	{
+//		iDModule.notifyAll(iDModule.getUserList());
+//	}
 
 	@Test
 	public void testGetSpecificUserIntArrayListOfUser()
@@ -69,10 +73,10 @@ public class IDModuleTest
 		iDModule.GetSpecificUser(Generator.GenerateAchternaam());
 	}
 
-	@Test
-	public void testOpenGate() throws Exception
-	{
-		iDModule.openGate(user);
-	}
+//	@Test
+//	public void testOpenGate() throws Exception
+//	{
+//		iDModule.openGate(user);
+//	}
 
 }

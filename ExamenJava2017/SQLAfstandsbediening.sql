@@ -1,5 +1,5 @@
 -- CREATE DATABASE  IF NOT EXISTS `afstandbediening` /*!40100 DEFAULT CHARACTER SET latin1 */;
-USE `afstandbediening`;
+USE `afstandsbediening`;
 drop table Bewoners;
 create table Bewoners(
 ID int Not null auto_increment Primary key,

@@ -88,24 +88,34 @@ public class IDModule implements ISubject
 	@Override
 	public void addObserver(User user) throws IOException, SQLException
 	{
-		UserList.add(user);
-		db.insertDB(user);
+		if (UserList.contains(user))
+		{
+			user.setAcces(true);
+			db.setAccessTrue(user);
+		} else
+		{
+			UserList.add(user);
+			db.insertDB(user);
+		}
 	}
 
 	@Override
 	public void updateObserver(double frequency, User user) throws SQLException, IOException
 	{
-		user.setFrequency(frequency);
-		db.updateDB(frequency);
+		if (user.isAcces() == true)
+		{
+			user.setFrequency(frequency);
+			db.updateDB(frequency);
+		}
 	}
 
 	@Override
 	public void notifyAll(ArrayList<User> arrayList) throws SQLException, IOException
 	{
-		System.out.print("Udate Frequentie");
+		System.out.print("Update Frequentie voor alle gebruikers");
 		for (User user : arrayList)
 		{
-			updateObserver(Generator.Randomfrequency(), user);
+			updateObserver(getPermittedFrequency(), user);
 		}
 
 	}
@@ -177,8 +187,7 @@ public class IDModule implements ISubject
 		}
 		if (user.getFrequency() != permittedFrequency && user.isAcces() == false)
 		{
-			JOptionPane.showMessageDialog(null,
-					"Acces denied " + user.getFirstName() + " " + user.getLastName());
+			JOptionPane.showMessageDialog(null, "Acces denied " + user.getFirstName() + " " + user.getLastName());
 		}
 	}
 

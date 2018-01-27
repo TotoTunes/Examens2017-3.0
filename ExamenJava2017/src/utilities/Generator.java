@@ -18,7 +18,7 @@ public class Generator
 {
 
 	private static Random rand = new Random();
-	private static ArrayList<Double> FrequencyList = new ArrayList<Double>();
+	public static ArrayList<Double> FrequencyList = new ArrayList<Double>();
 
 	public static String GenerateVoornaam()
 	{
@@ -55,10 +55,6 @@ public class Generator
 		FrequencyList.add(a);
 	}
 
-	public static void ClearFrequencyList()
-	{
-		FrequencyList.clear();
-	}
 	// alles random gemaakt zodat we daarna kunnen zien of het programma de juiste
 	// handelingen uitvoert
 

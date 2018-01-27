@@ -57,13 +57,8 @@ public class GeneratorTest
 	public void testRandomFrequency()
 	{
 		Double frequency = Generator.Randomfrequency();
-		assertTrue("Frequentie niet correct", frequency > 0);
-	}
-
-	@Test
-	public void testClearFrequencyList()
-	{
-		Generator.ClearFrequencyList();
+		assertTrue("Frequentie niet correct",
+				Generator.FrequencyList.contains(frequency) && (frequency > 0 && frequency < 900));
 	}
 
 	@Test
