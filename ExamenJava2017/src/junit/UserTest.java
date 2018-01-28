@@ -7,7 +7,6 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import model.User;
-import utilities.Generator;
 
 /**
  * @author Bart Taelemans & Thomas Vanden Bossche
@@ -26,8 +25,7 @@ public class UserTest
 	public static void setUpBeforeClass() throws Exception
 	{
 		random = new Random();
-		user = new User(random.nextBoolean(), 205.13, Generator.GenerateAchternaam(),
-				Generator.GenerateVoornaam());
+		user = new User(random.nextBoolean(), 205.13, "Taelemans", "Bart");
 	}
 
 	@Test

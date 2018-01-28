@@ -40,20 +40,6 @@ public class GeneratorTest
 	}
 
 	@Test
-	public void testGenerateVoornaam()
-	{
-		String voornaam = Generator.GenerateVoornaam();
-		assertTrue("Voornaam niet in lijst", voornamen.contains(voornaam));
-	}
-
-	@Test
-	public void testGenerateAchternaam()
-	{
-		String achternaam = Generator.GenerateAchternaam();
-		assertTrue("Achternaam niet in lijst", achternamen.contains(achternaam));
-	}
-
-	@Test
 	public void testRandomFrequency()
 	{
 		Double frequency = Generator.Randomfrequency();
@@ -66,7 +52,7 @@ public class GeneratorTest
 	{
 		User user = Generator.GenerateUsers(Generator.Randomfrequency());
 		assertTrue("Gebruiker incorrect", voornamen.contains(user.getFirstName())
-				&& achternamen.contains(user.getLastName()) && user.getFrequency() > 0);
+				&& achternamen.contains(user.getLastName()) && user.getFrequency() > 0 && user.getFrequency() < 900);
 	}
 
 }

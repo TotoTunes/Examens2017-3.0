@@ -20,7 +20,7 @@ public class Generator
 	private static Random rand = new Random();
 	private static ArrayList<Double> FrequencyList = new ArrayList<Double>();
 
-	public static String GenerateVoornaam()
+	private static String GenerateVoornaam()
 	{
 
 		VoornaamEnum voornaam = VoornaamEnum.values()[rand.nextInt(VoornaamEnum.values().length)];
@@ -28,7 +28,7 @@ public class Generator
 		return result;
 	}
 
-	public static String GenerateAchternaam()
+	private static String GenerateAchternaam()
 	{
 		AchternaamEnum achternaam = AchternaamEnum.values()[rand.nextInt(AchternaamEnum.values().length)];
 		String result = achternaam.toString();
